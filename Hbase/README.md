@@ -65,42 +65,45 @@
 | personal-data:city | timestamp=1585341195692, value=Naples |
 | personal-data:city | timestamp=1585339693652, value=Turin |
 	
-> 1 row(s)
-> Took 0.1323 seconds
+```
+1 row(s)
+Took 0.1323 seconds
+```
 	
 ## 5. Utilize o scan para mostrar apenas o nome e profissão dos italianos.
 > scan 'italians',{COLUMNS=>['personal-data:name','professional-data:role']}
 	
-    > | ROW | COLUMN+CELL |
-    > | --- | ----------- |
-    > | 1 | column=personal-data:name, timestamp=1585338610670, value=Paolo Sorrentino|
-    > | 1 | column=professional-data:role, timestamp=1585338610792, value=Gestao Comercial
-    > | 10 | column=personal-data:name, timestamp=1585338611239, value=Giovanna Caputo
-    > | 10 | column=professional-data:role, timestamp=1585338611266, value=Comunicacao Institucional
-    > | 11 | column=personal-data:name, timestamp=1585339693540, value=Matteo Coppola
-    > | 11 | column=professional-data:role, timestamp=1585339693724, value=Gest??o Industrial
-    > | 12 | column=personal-data:name, timestamp=1585339704611, value=Bianca Ferrari
-    > | 12 | column=professional-data:role, timestamp=1585339704756, value=Geologia
-    > | 2 | column=personal-data:name, timestamp=1585338610819, value=Domenico Barbieri
-    > | 2 | column=professional-data:role, timestamp=1585338610843, value=Psicopedagogia
-    > | 3 | column=personal-data:name, timestamp=1585338610872, value=Maria Parisi
-    > | 3 | column=professional-data:role, timestamp=1585338610902, value=Optometria
-    > | 4 | column=personal-data:name, timestamp=1585338610925, value=Silvia Gallo
-    > | 4 | column=professional-data:role, timestamp=1585338610950, value=Engenharia Industrial Madeireira
-    > | 5 | column=personal-data:name, timestamp=1585338610984, value=Rosa Donati
-    > | 5 | column=professional-data:role, timestamp=1585338611014, value=Mecatronica Industrial
-    > | 6 | column=personal-data:name, timestamp=1585338611039, value=Simone Lombardo
-    > | 6 | column=professional-data:role, timestamp=1585338611066, value=Biotecnologia e Bioquimica
-    > | 7 | column=personal-data:name, timestamp=1585338611090, value=Barbara Ferretti
-    > | 7 | column=professional-data:role, timestamp=1585338611115, value=Libras
-    > | 8 | column=personal-data:name, timestamp=1585338611140, value=Simone Ferrara
-    > | 8 | column=professional-data:role, timestamp=1585338611163, value=Engenharia de Minas
-    > | 9 | column=personal-data:name, timestamp=1585338611190, value=Vincenzo Giordano
-    > | 9 | column=professional-data:role, timestamp=1585338611213, value=Marketing
+| ROW | COLUMN+CELL |
+| --- | ----------- |
+| 1 | column=personal-data:name, timestamp=1585338610670, value=Paolo Sorrentino|
+| 1 | column=professional-data:role, timestamp=1585338610792, value=Gestao Comercial
+| 10 | column=personal-data:name, timestamp=1585338611239, value=Giovanna Caputo
+| 10 | column=professional-data:role, timestamp=1585338611266, value=Comunicacao Institucional
+| 11 | column=personal-data:name, timestamp=1585339693540, value=Matteo Coppola
+| 11 | column=professional-data:role, timestamp=1585339693724, value=Gest??o Industrial
+| 12 | column=personal-data:name, timestamp=1585339704611, value=Bianca Ferrari
+| 12 | column=professional-data:role, timestamp=1585339704756, value=Geologia
+| 2 | column=personal-data:name, timestamp=1585338610819, value=Domenico Barbieri
+| 2 | column=professional-data:role, timestamp=1585338610843, value=Psicopedagogia
+| 3 | column=personal-data:name, timestamp=1585338610872, value=Maria Parisi
+| 3 | column=professional-data:role, timestamp=1585338610902, value=Optometria
+| 4 | column=personal-data:name, timestamp=1585338610925, value=Silvia Gallo
+| 4 | column=professional-data:role, timestamp=1585338610950, value=Engenharia Industrial Madeireira
+| 5 | column=personal-data:name, timestamp=1585338610984, value=Rosa Donati
+| 5 | column=professional-data:role, timestamp=1585338611014, value=Mecatronica Industrial
+| 6 | column=personal-data:name, timestamp=1585338611039, value=Simone Lombardo
+| 6 | column=professional-data:role, timestamp=1585338611066, value=Biotecnologia e Bioquimica
+| 7 | column=personal-data:name, timestamp=1585338611090, value=Barbara Ferretti
+| 7 | column=professional-data:role, timestamp=1585338611115, value=Libras
+| 8 | column=personal-data:name, timestamp=1585338611140, value=Simone Ferrara
+| 8 | column=professional-data:role, timestamp=1585338611163, value=Engenharia de Minas
+| 9 | column=personal-data:name, timestamp=1585338611190, value=Vincenzo Giordano
+| 9 | column=professional-data:role, timestamp=1585338611213, value=Marketing
 
-    > 12 row(s)
-    > Took 0.3221 seconds
-
+```
+12 row(s)
+Took 0.3221 seconds
+```
 
 
 ## 6. Apague os italianos com row id ímpar
