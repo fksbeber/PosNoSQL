@@ -605,7 +605,7 @@ call db.propertyKeys
 # Exercício 9 
 > :play https://guides.neo4j.com/intro-neo4j-exercises/09.html
 
-# 9.1 Create the ACTED_IN relationship between the actors, Robin Wright, Tom Hanks, and Gary Sinise and the movie, Forrest Gump.
+## 9.1 Create the ACTED_IN relationship between the actors, Robin Wright, Tom Hanks, and Gary Sinise and the movie, Forrest Gump.
 ```
 match (m:Movie)
 where m.title = 'Forrest Gump'
@@ -614,7 +614,7 @@ where p.name = 'Tom Hanks' or p.name = 'Robin Wright' or p.name = 'Gary Sinise'
 create (p)-[:ACTED_IN]->(m)
 ```
 
-# 9.2 Create the DIRECTED relationship between Robert Zemeckis and the movie, Forrest Gump.
+## 9.2 Create the DIRECTED relationship between Robert Zemeckis and the movie, Forrest Gump.
 ```
 match (m:Movie)
 where m.title = 'Forrest Gump' 
@@ -623,7 +623,7 @@ where p.name = 'Robert Zemeckis'
 create (p)-[:DIRECTED]->(m)
 ```
 
-# 9.3 Create a new relationship, HELPED from Tom Hanks to Gary Sinise.
+## 9.3 Create a new relationship, HELPED from Tom Hanks to Gary Sinise.
 ```
 match (p1:Person)
 where p1.name = 'Tom Hanks' 
@@ -632,14 +632,14 @@ where p2.name = 'Gary Sinise'
 create (p1)-[:HELPED]->(p2)
 ```
 
-# 9.4 Write a Cypher query to return all nodes connected to the movie, Forrest Gump, along with their relationships.
+## 9.4 Write a Cypher query to return all nodes connected to the movie, Forrest Gump, along with their relationships.
 ```
 match (p:Person)-[r]->(m:Movie)
 where m.title='Forrest Gump'
 return p, r, m
 ```
 
-# 9.5 Add the roles property to the three ACTED_IN relationships that you just created to the movie, Forrest Gump using this information: Tom Hanks played the role, Forrest Gump. Robin Wright played the role, Jenny Curran. Gary Sinise played the role, Lieutenant Dan Taylor.
+## 9.5 Add the roles property to the three ACTED_IN relationships that you just created to the movie, Forrest Gump using this information: Tom Hanks played the role, Forrest Gump. Robin Wright played the role, Jenny Curran. Gary Sinise played the role, Lieutenant Dan Taylor.
 ```
 match (p:Person)-[r:ACTED_IN]->(m:Movie)
 where m.title='Forrest Gump'
@@ -650,58 +650,58 @@ set r.roles = case p.name
 end
 ```
 
-# 9.6 Add a new property, research to the HELPED relationship between Tom Hanks and Gary Sinise and set this property’s value to war history.
+## 9.6 Add a new property, research to the HELPED relationship between Tom Hanks and Gary Sinise and set this property’s value to war history.
 ```
 match (p1:Person)-[r:HELPED]->(p2:Person)
 where p1.name = 'Tom Hanks' and p2.name = 'Gary Sinise'
 set r.research = 'war history'
 ```
 
-# 9.7 View the current list of property keys in the graph.
+## 9.7 View the current list of property keys in the graph.
 ```
 call db.propertyKeys
 ```
 
-# 9.8 View the current schema of the graph.
+## 9.8 View the current schema of the graph.
 ```
 call db.schema
 ```
 
-# 9.9 Query the graph to return the names and roles of actors in the movie, Forrest Gump.
+## 9.9 Query the graph to return the names and roles of actors in the movie, Forrest Gump.
 ```
 match (p:Person)-[r:ACTED_IN]->(m:Movie)
 where m.title='Forrest Gump'
 return p.name, r.roles
 ```
 
-# 9.10 Query the graph to retrieve information about any HELPED relationships.
+## 9.10 Query the graph to retrieve information about any HELPED relationships.
 ```
 match (p1:Person)-[r:HELPED]-(p2:Person)
 return p1.name, r, p2.name
 ```
 
-# 9.11 Modify the role that Gary Sinise played in the movie, Forrest Gump from Lieutenant Dan Taylor to Lt. Dan Taylor.
+## 9.11 Modify the role that Gary Sinise played in the movie, Forrest Gump from Lieutenant Dan Taylor to Lt. Dan Taylor.
 ```
 match (p:Person)-[r:ACTED_IN]->(m:Movie)
 where m.title='Forrest Gump' and p.name='Gary Sinise'
 set r.roles=['Lt. Dan Taylor']
 ```
 
-# 9.12 Remove the research property from the HELPED relationship from Tom Hanks to Gary Sinise.
+## 9.12 Remove the research property from the HELPED relationship from Tom Hanks to Gary Sinise.
 ```
 match (p1:Person)-[r:HELPED]-(p2:Person)
 where p1.name='Tom Hanks' and p2.name='Gary Sinise'
 remove r.research
 ```
 
-# 9.13 Query the graph to confirm that your modifications were made to the graph.
+## 9.13 Query the graph to confirm that your modifications were made to the graph.
 ```
 match (p:Person)-[r:ACTED_IN]->(m:Movie)
 where m.title='Forrest Gump'
 return p, r, m
 ```
 
-# 9.14 (Taking it further) Try adding or updating properties using the JSON-style syntax using = and +=.
+## 9.14 (Taking it further) Try adding or updating properties using the JSON-style syntax using = and +=.
 ```
 match (p:Person)-[r:ACTED_IN]-(m:Movie)
 where m.title='Forrest Gump' and p.name='Tom Hanks'
@@ -711,40 +711,40 @@ set r += {mainCharacter: true}
 # Exercício 10 
 > :play https://guides.neo4j.com/intro-neo4j-exercises/10.html
 
-# 10.1 Delete the HELPED relationship from the graph.
+## 10.1 Delete the HELPED relationship from the graph.
 ```
 match (:Person)-[r:HELPED]-(:Person)
 delete r
 ```
 
-# 10.2 Query the graph to confirm that the relationship no longer exists.
+## 10.2 Query the graph to confirm that the relationship no longer exists.
 ```
 match (:Person)-[r:HELPED]-(:Person)
 return r
 ```
 
-# 10.3 Query the graph to display Forrest Gump and all of its relationships.
+## 10.3 Query the graph to display Forrest Gump and all of its relationships.
 ```
 match (m:Movie)-[r]-(p:Person)
 where m.title = 'Forrest Gump'
 return m,r,p
 ```
 
-# 10.4 Try deleting the Forrest Gump node without detaching its relationships.
+## 10.4 Try deleting the Forrest Gump node without detaching its relationships.
 ```
 match (m:Movie)
 where m.title = 'Forrest Gump'
 delete m
 ```
 
-# 10.5 Delete Forrest Gump, along with its relationships in the graph.
+## 10.5 Delete Forrest Gump, along with its relationships in the graph.
 ```
 match (m:Movie)
 where m.title = 'Forrest Gump'
 detach delete m
 ```
 
-# 10.6 Query the graph to confirm that the Forrest Gump node has been deleted. 
+## 10.6 Query the graph to confirm that the Forrest Gump node has been deleted. 
 ```
 match (p:Person)-[r]-(m:Movie)
 where m.title='Forrest Gump'
