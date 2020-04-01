@@ -1,4 +1,6 @@
-# Exercício 1
+# Exercício 1 - Aquecendo com os pets
+Insira os seguintes registros no MongoDB e em seguida responda as questões
+abaixo:
 
 > use petshop
 
