@@ -182,7 +182,7 @@ Type "it" for more
 ```
 	
 ## 2.9 Liste as pessoas que tem o mesmo nome que seu bichano (gatou ou cachorro)
->  db.italians.find({$and:[{$or  [{cat: {$exists: true}},{dog: {$exists: true}}]},{$where: "(this.cat && this.firstname == this.cat.name) || (this.dog && this.firstname == this.dog.name)"}]},{_id:0,'firstname':1, 'dog.name':1, 'cat.name':1})
+>  db.italians.find({$and:[{$or:  [{cat: {$exists: true}},{dog: {$exists: true}}]},{$where: "(this.cat && this.firstname == this.cat.name) || (this.dog && this.firstname == this.dog.name)"}]},{_id:0,'firstname':1, 'dog.name':1, 'cat.name':1})
 ```
 { "firstname" : "Cristian", "cat" : { "name" : "Cristian" } }
 { "firstname" : "Michele", "cat" : { "name" : "Michele" } }
