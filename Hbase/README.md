@@ -1,16 +1,16 @@
 # Parte 1 - Aquecendo com alguns dados
 
-1. Crie a tabela com 2 famílias de colunas:
+## 1. Crie a tabela com 2 famílias de colunas:
 	a. personal-data
 	b. professional-data
     > create 'italians', 'personal-data', 'professional-data'
 	
-2. Importe o arquivo via linha de comando
+## 2. Importe o arquivo via linha de comando
 	> hbase shell /tmp/italians.txt
 
 # Agora execute as seguintes operações:
 
- 1. Adicione mais 2 italianos mantendo adicionando informações como data
+## 1. Adicione mais 2 italianos mantendo adicionando informações como data
 de nascimento nas informações pessoais e um atributo de anos de
 experiência nas informações profissionais;
 	> put 'italians', '11', 'personal-data:name',  'Matteo Coppola'
@@ -27,17 +27,17 @@ experiência nas informações profissionais;
 	> put 'italians', '12', 'professional-data:years_of_experience',  '13'
 	> put 'italians', '12', 'professional-data:salary',  '10525'
 	
-2. Adicione o controle de 5 versões na tabela de dados pessoais.
+## 2. Adicione o controle de 5 versões na tabela de dados pessoais.
 	> alter 'italians', NAME=>'personal-data', VERSIONS=>5
 	
-3. Faça 5 alterações em um dos italianos;
+## 3. Faça 5 alterações em um dos italianos;
 	> put 'italians', '11', 'personal-data:birth',  '05/11/1980'
 	> put 'italians', '11', 'personal-data:birth',  '15/11/1980'
 	> put 'italians', '11', 'personal-data:city',  'Naples'
 	> put 'italians', '11', 'personal-data:city',  'Rome'
 	> put 'italians', '11', 'personal-data:city',  'Florence'
 	
-4. Com o operador get, verifique como o HBase armazenou o histórico.
+## 4. Com o operador get, verifique como o HBase armazenou o histórico.
 	> get 'italians', '11',{COLUMN=>'personal-data:city', VERSIONS=>5}
 	
     > COLUMN                                      > CELL
@@ -48,7 +48,7 @@ experiência nas informações profissionais;
 	1 row(s)
 	Took 0.1323 seconds
 	
-5. Utilize o scan para mostrar apenas o nome e profissão dos italianos.
+## 5. Utilize o scan para mostrar apenas o nome e profissão dos italianos.
 	> scan 'italians',{COLUMNS=>['personal-data:name','professional-data:role']}
 	
     > |ROW | COLUMN+CELL |
@@ -83,7 +83,7 @@ experiência nas informações profissionais;
 
 
 
-6. Apague os italianos com row id ímpar
+## 6. Apague os italianos com row id ímpar
 	> deleteall 'italians', '1'
 	> deleteall 'italians', '3'
 	> deleteall 'italians', '5'
@@ -91,7 +91,7 @@ experiência nas informações profissionais;
 	> deleteall 'italians', '9'
 	> deleteall 'italians', '11'
 	
-7. Crie um contador de idade 55 para o italiano de row id 5
+## 7. Crie um contador de idade 55 para o italiano de row id 5
 	> incr 'italians', 5, 'personal-data:age', 55 
 	
         COUNTER VALUE = 55
@@ -102,7 +102,7 @@ experiência nas informações profissionais;
         COUNTER VALUE = 55
 	    Took 0.0116 seconds
 	
-8. Incremente a idade do italiano em 1
+## 8. Incremente a idade do italiano em 1
 	> incr 'italians', 5, 'personal-data:age', 1
 	
         COUNTER VALUE = 56
