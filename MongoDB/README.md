@@ -238,6 +238,7 @@ Type "it" for more
 ```
 	
 ## 2.11 Projete apenas os animais dos italianos. Devem ser listados os animais com nome e idade. Não mostre o identificado do mongo (ObjectId)
+
 >  db.italians.find({$where: "this.cat || this.dog"},{'_id':0,'cat':1,'dog':1})
 ```
 { "cat" : { "name" : "Alessandro", "age" : 6 } }
@@ -264,6 +265,7 @@ Type "it" for more
 ```	
 
 ## 2.12 Quais são as 5 pessoas mais velhas com sobrenome Rossi?
+
 >  db.italians.find({'surname': 'Rossi'},{'_id': 0,'firstname': 1,'age': 1}).limit(5).sort({'age': -1})
 ```
 { "firstname" : "Massimo", "age" : 79 }
@@ -274,18 +276,21 @@ Type "it" for more
 ```
 
 ## 2.13 Crie um italiano que tenha um leão como animal de estimação. Associe um nome e idade ao bichano
+
 >  db.italians.insert({firstname: "Matteo", surname: "Coppola", age: '41',email: 'matteo.coppola@hotmail.com',bloodType: 'AB+', id_num: '858585858585', jobs: ['Gestão de Segurança Privada','Segurança Pública'], favFruits: ['Laranja','Banana','Mamão'], lion: {name: 'Filipo', age: 8}})
 ```
 WriteResult({ "nInserted" : 1 })
 ```
 	
 ## 2.14 Infelizmente o Leão comeu o italiano. Remova essa pessoa usando o Id.
+
 >  db.italians.remove({"_id" : ObjectId("5e7ce669272f7c6603b09fc7")})
 ```
 WriteResult({ "nRemoved" : 1 })
 ```
 	
 ## 2.15 Passou um ano. Atualize a idade de todos os italianos e dos bichanos em 1
+
 >  db.italians.update({},{'$inc': {'age': 1}},{multi: true})
 ```
 WriteResult({ "nMatched" : 10000, "nUpserted" : 0, "nModified" : 10000 })
@@ -296,6 +301,7 @@ WriteResult({ "nMatched" : 6035, "nUpserted" : 0, "nModified" : 6035 })
 ```	
 
 ## 2.16 O Corona Vírus chegou na Itália e misteriosamente atingiu pessoas somente com gatos e de 66 anos. Remova esses italianos.
+
 >  db.italians.remove({$and: [{'age': 66},{'cat': {$exists: true}}]})
 ```
 WriteResult({ "nRemoved" : 81 })
@@ -315,6 +321,7 @@ WriteResult({ "nRemoved" : 81 })
 ```
 	
 ## 2.18 Utilizando aggregate framework, faça uma lista de nomes única de nomes. Faça isso usando apenas o primeiro nome
+
 >  db.italians.aggregate([{$group: {_id: '$firstname'}}])
 ```
 { "_id" : "Anna" }
@@ -341,6 +348,7 @@ Type "it" for more
 ```
 	
 ## 2.19 Agora faça a mesma lista do item acima, considerando nome completo.
+
 > db.italians.aggregate([{$group: {_id: {firstname:'$firstname', surname: '$surname'}}}])
 ```
 { "_id" : { "firstname" : "Domenico", "surname" : "Moretti" } }
@@ -366,8 +374,8 @@ Type "it" for more
 Type "it" for more
 ```
 	
-## 2.20 Procure pessoas que gosta de Banana ou Maçã, tenham cachorro ou gato,
-mais de 20 e menos de 60 anos
+## 2.20 Procure pessoas que gosta de Banana ou Maçã, tenham cachorro ou gato, mais de 20 e menos de 60 anos
+
 >  db.italians.find({$and: [{$or:  [{favFruits: 'Banana'},{favFruits: 'Maçã'}]},{$or:  [{cat: {$exists: true}},{dog: {$exists: true}}]},{age: {'$gt': 20,'$lt': 60}}]},{'_id': 0, 'firstname': 1, 'favFruits': 1, 'cat': 1, 'dog': 1})
 ```
 { "firstname" : "Teresa", "favFruits" : [ "Banana", "Laranja", "Pêssego" ], "cat" : { "name" : "Alessandro", "age" : 7 } }
